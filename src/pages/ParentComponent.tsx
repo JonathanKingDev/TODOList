@@ -1,6 +1,5 @@
 import React from "react";
-import { LoginPage, SignupPage } from "./pages";
-import "./style.scss";
+import { LoginPage, SignupPage } from ".";
 
 export const ParentComponent: React.FC = () => {
   const [isSignUp, setIsSignUp] = React.useState(false);

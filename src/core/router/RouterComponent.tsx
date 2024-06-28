@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { LoginPage, TaskListPage } from "@/pages";
 import { appRoutes } from "./routes";
 import { SignupPage } from "@/pages/signup";
-import { ParentComponent } from "@/ParentComponent";
+import { ParentComponent } from "@/pages/ParentComponent";
 
 export const Router: React.FC = () => {
   return (
