@@ -1,0 +1,45 @@
+@use "_base" as *;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  line-height: 1.1;
+}
+
+input {
+  display: flex;
+  padding: 0.8em 1em;
+  margin-bottom: 10px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3) inset;
+  border: 1px solid #ddd;
+  width: 100%;
+  border-radius: $element-radius;
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.8em 1.5em;
+  border-radius: $element-radius;
+  font-weight: 900;
+  transition: all ease 0.2s;
+
+  &:hover {
+    background: red;
+  }
+
+  &:active {
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.2), inset 0 2px 2px rgba(0, 0, 0, 0.4),
+      inset 0 2px 2px rgba(0, 0, 0, 0.6), inset 0 2px 2px rgba(0, 0, 0, 0.8);
+  }
+}
