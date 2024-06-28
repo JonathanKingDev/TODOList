@@ -1,6 +1,6 @@
 import { FormLogin } from "./components";
 import { useNavigate } from "react-router-dom";
-import { authenticateUser } from "../../services/api";
+import { authenticateUser, isEmptyRequest } from "../../services/api";
 import { appRoutes } from "@/core/router";
 import { LoginInput } from "./login.vm";
 import { mapCredentialsFormToRequest as mapLoginToRequest } from "./login.mapper";
@@ -11,6 +11,9 @@ export const LoginPage: React.FC = () => {
 
   const handleLoginSubmit = (input: LoginInput) => {
     const credentials = mapLoginToRequest(input);
+
+    //Método para evitar llamar a la api si la request está vacía
+    if (isEmptyRequest(credentials)) return;
 
     authenticateUser(credentials).then((AppCredentials) => {
       if (AppCredentials) {
