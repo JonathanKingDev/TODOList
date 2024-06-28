@@ -1,14 +1,14 @@
 import { Credentials } from "@/core/models/app.credentials-model";
-import { ApiCredentials } from "../models/login.api-model";
+import { LoginRequest } from "../models/login.api-model";
 import Axios from "axios";
 
-const url = "https://to-do-api.codelatte.es/login";
+const LOGIN_ENDPOINT = "https://to-do-api.codelatte.es/login";
 
-export const validationLogin = async (
-  credentials: ApiCredentials
+export const authenticateUser = async (
+  request: LoginRequest
 ): Promise<Credentials | null> => {
   try {
-    const response = await Axios.post<Credentials>(url, credentials, {
+    const response = await Axios.post<Credentials>(LOGIN_ENDPOINT, request, {
       headers: {
         "Content-Type": "application/json",
       },

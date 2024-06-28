@@ -1,4 +1,7 @@
-@use "_base" as *;
+$translateX100: 100%;
+$translateX50: 50%;
+$translateX20: 20%;
+$translateXMinus100: -100%;
 
 * {
   box-sizing: border-box;
@@ -8,38 +11,192 @@ body {
   font-family: system-ui;
   margin: 0;
   padding: 0;
+  background: #f6f5f7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: -20px 0 50px;
 }
 
 h1 {
-  line-height: 1.1;
+  font-weight: bold;
+  margin: 0;
 }
 
-input {
-  display: flex;
-  padding: 0.8em 1em;
-  margin-bottom: 10px;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3) inset;
-  border: 1px solid #ddd;
-  width: 100%;
-  border-radius: $element-radius;
+p {
+  font-size: 16px;
+  font-weight: 100;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 20px 0 30px;
 }
 
-button {
+span {
+  font-size: 12px;
+}
+
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
-  padding: 0.8em 1.5em;
-  border-radius: $element-radius;
-  font-weight: 900;
-  transition: all ease 0.2s;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0, 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  overflow: hidden;
+  width: 768px;
+  max-width: 100%;
+  min-height: 480px;
 
-  &:hover {
-    background: red;
+  &.right-panel-active {
+    .moving-container {
+      transform: translateX($translateX100);
+    }
+
+    .overlay-container {
+      transform: translateX($translateXMinus100);
+    }
+
+    .overlay {
+      transform: translateX($translateX50);
+    }
+
+    .overlay-left {
+      transform: translateX(0);
+    }
+
+    .overlay-right {
+      transform: translateX($translateX20);
+    }
+  }
+}
+
+.button-login {
+  border-radius: 20px;
+  border: 1px solid #00c5bf;
+  background: #00c5bf;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  margin-top: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+
+  &#blue {
+    background: #0077bc;
+    border: 1px solid #0077bc;
   }
 
   &:active {
-    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.2), inset 0 2px 2px rgba(0, 0, 0, 0.4),
-      inset 0 2px 2px rgba(0, 0, 0, 0.6), inset 0 2px 2px rgba(0, 0, 0, 0.8);
+    transform: scale(0.95);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &.ghost {
+    background: transparent;
+    border-color: #fff;
+  }
+}
+
+.form-container {
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+
+  & form {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  & input {
+    background: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+  }
+
+  &.signup-container {
+    left: 0;
+    width: 50%;
+    z-index: 1;
+  }
+
+  &.login-container {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+  }
+}
+
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 100;
+
+  .overlay {
+    background-image: linear-gradient(
+      to right,
+      #14daa9,
+      #00d0ba,
+      #00c5c6,
+      #00bacc,
+      #00adcc
+    );
+    color: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: tranform 0.6s ease-in-out;
+
+    .overlay-panel {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 50%;
+      text-align: center;
+      transform: translateX(0);
+      transition: transform 0.6s ease-in-out;
+
+      &.overlay-right {
+        right: 0;
+        transform: translateX(0);
+      }
+
+      &.overlay-left {
+        background-image: linear-gradient(
+          to left,
+          #0093cb,
+          #1d85c2,
+          #2f77b8,
+          #3d69ac,
+          #475b9f
+        );
+        transition: translateX(-20%);
+      }
+    }
   }
 }

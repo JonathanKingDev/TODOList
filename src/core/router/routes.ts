@@ -1,4 +1,6 @@
 export const appRoutes = {
-  LoginPage: "/",
-  TaskListPage: "/taskList",
+  ParentComponent: "/",
+  LoginPage: "/login",
+  SignupPage: "/signup",
+  TaskListPage: "/tasklist",
 };

@@ -1,14 +1,14 @@
 import React from "react";
-import { LoginInput, createEmptyInput } from "../login.vm";
+import { SignupInput, createEmptyInput } from "../signup.vm";
 
 interface Props {
-  onLogin: (input: LoginInput) => void;
+  onSignup: (input: SignupInput) => void;
 }
 
-export const FormLogin: React.FC<Props> = (props) => {
-  const { onLogin } = props;
+export const FormSignup: React.FC<Props> = (props) => {
+  const { onSignup } = props;
 
-  const [userInput, setUserInput] = React.useState<LoginInput>(
+  const [userInput, setUserInput] = React.useState<SignupInput>(
     createEmptyInput()
   );
 
@@ -21,29 +21,33 @@ export const FormLogin: React.FC<Props> = (props) => {
 
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onLogin(userInput);
+    onSignup(userInput);
   };
 
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <h1>Log In</h1>
+        <h1>Create Your Account</h1>
         <input
           type="text"
-          id="username"
-          name="username"
           placeholder="Enter your username..."
-          onChange={handleChange}
-        ></input>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Enter your password..."
+          name="username"
           onChange={handleChange}
         />
-        <button className="button-login" type="submit">
-          Log In
+        <input
+          type="email"
+          placeholder="Enter your email..."
+          name="email"
+          onChange={handleChange}
+        />
+        <input
+          type="password"
+          placeholder="Enter your password..."
+          name="password"
+          onChange={handleChange}
+        />
+        <button className="button-login" id="blue" type="submit">
+          Sign Up
         </button>
       </form>
     </>

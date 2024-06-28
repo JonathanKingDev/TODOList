@@ -1,22 +1,21 @@
 import { FormLogin } from "./components";
 import { useNavigate } from "react-router-dom";
-import { validationLogin } from "../../services/api";
+import { authenticateUser } from "../../services/api";
 import { appRoutes } from "@/core/router";
-import { AppUser } from "./login.vm";
-import { mapCredentialsFormToRequest } from "./login.mapper";
+import { LoginInput } from "./login.vm";
+import { mapCredentialsFormToRequest as mapLoginToRequest } from "./login.mapper";
+import { saveCredentials } from "@/core/localstorage/localStorage.manager";
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
 
-  const handleSubmit = (input: AppUser) => {
-    const credentials = mapCredentialsFormToRequest(input);
+  const handleLoginSubmit = (input: LoginInput) => {
+    const credentials = mapLoginToRequest(input);
 
-    validationLogin(credentials).then((AppCredentials) => {
+    authenticateUser(credentials).then((AppCredentials) => {
       if (AppCredentials) {
         //guardar las credenciales en el localstorage
-        localStorage.setItem("Token", AppCredentials.token);
-        localStorage.setItem("Username", AppCredentials.username);
-        localStorage.setItem("Email", AppCredentials.email);
+        saveCredentials(AppCredentials);
 
         navigate(appRoutes.TaskListPage);
       } else {
@@ -27,10 +26,7 @@ export const LoginPage: React.FC = () => {
 
   return (
     <div>
-      <div className="principal-container">
-        <h1>Access</h1>
-        <FormLogin onLogin={handleSubmit} />
-      </div>
+      <FormLogin onLogin={handleLoginSubmit} />
     </div>
   );
 };

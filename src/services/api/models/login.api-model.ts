@@ -1,4 +1,4 @@
-export interface ApiCredentials {
+export interface LoginRequest {
   usernameOrEmail: string;
   password: string;
 }

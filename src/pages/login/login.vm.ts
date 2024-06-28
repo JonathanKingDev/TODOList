@@ -1,14 +1,9 @@
-export interface AppUser {
+export interface LoginInput {
   username: string;
   password: string;
 }
 
-export const createEmptyInput = (): AppUser => ({
+export const createEmptyInput = (): LoginInput => ({
   username: "",
   password: "",
 });
-
-// export interface CredentialsFormErrors {
-//   user: string;
-//   password: string;
-// }
