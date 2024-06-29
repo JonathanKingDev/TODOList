@@ -75,19 +75,21 @@ export const TaskListPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="add-task">
-          <button onClick={handleNewTask}>
-            <img src={plus} alt="Add new task" className="icon" />
-          </button>
-
+        <div className="footer-tasklist">
           <div className="toggle-container">
-            <label>Show only my tasks</label>
+            <label>Only my tasks</label>
             <input
               className="toggle"
               type="checkbox"
               id="my-toggle"
               onChange={handleToggle}
             />
+          </div>
+
+          <div className="add-task">
+            <button onClick={handleNewTask}>
+              <img src={plus} alt="Add new task" className="icon" />
+            </button>
           </div>
         </div>
       </div>

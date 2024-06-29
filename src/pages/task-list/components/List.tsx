@@ -20,7 +20,7 @@ export const List: React.FC<Props> = (props) => {
   return (
     <>
       <div className="title-tasks">
-        <h1>{status} Tasks </h1>
+        <h1>{status} TASKS </h1>
       </div>
       <div className="task-list">
         <ul>
