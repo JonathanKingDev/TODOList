@@ -3,7 +3,7 @@ import { LoginPage, TaskListPage } from "@/pages";
 import { appRoutes } from "./routes";
 import { SignupPage } from "@/pages/signup";
 import { ParentLoginComponent } from "@/pages/ParentLoginComponent";
-import { FormNewTask } from "@/pages/new-task/FormNewTask";
+import { NewTaskPage } from "@/pages/new-task/NewTaskPage";
 import { TaskDetails } from "@/pages/task-details/TaskDatails";
 
 export const Router: React.FC = () => {
@@ -19,7 +19,7 @@ export const Router: React.FC = () => {
         <Route path={appRoutes.SignupPage} element={<SignupPage />} />
 
         <Route path={appRoutes.TaskListPage} element={<TaskListPage />} />
-        <Route path={appRoutes.NewTask} element={<FormNewTask />} />
+        <Route path={appRoutes.NewTask} element={<NewTaskPage />} />
         <Route path={appRoutes.TaskDetails} element={<TaskDetails />} />
       </Routes>
     </BrowserRouter>

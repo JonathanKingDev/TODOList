@@ -3,6 +3,7 @@ export interface LoginRequest {
   password: string;
 }
 
+//Comprobar si la request está vacía
 export const isEmptyRequest = (r: LoginRequest): boolean => {
   return (
     !r.usernameOrEmail ||

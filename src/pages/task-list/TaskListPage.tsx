@@ -59,7 +59,7 @@ export const TaskListPage: React.FC = () => {
         <p>{localStorage.getItem("Username")}</p>
       </div>
 
-      <div className="tasklist-container">
+      <div className="main-container">
         <div className="tab-container">
           <button onClick={() => handleEventButton(1)}>Not Started</button>
           <button onClick={() => handleEventButton(2)}>In Progress</button>
