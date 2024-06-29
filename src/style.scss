@@ -73,6 +73,89 @@ span {
   }
 }
 
+.header-container {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+
+  button {
+    border-radius: 20px;
+    border: 1px solid #00c5bf;
+    background: #00c5bf;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  p {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 10px 20px;
+  }
+}
+
+.tasklist-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border-radius: 10px;
+  width: 768px;
+  max-width: 100%;
+  min-height: 480px;
+  max-height: 480px;
+
+  .tab-container {
+    position: sticky;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    width: 100%;
+    margin-top: 30px;
+
+    button {
+      background: #0077bc;
+      border: 1px solid #0077bc;
+      border-radius: 20px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 12px 45px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      width: 190px;
+
+      &:focus {
+        background-color: #475b9f;
+
+        box-shadow: 0px 1em 2em -1.5em rgba(0, 0, 0, 0.5) inset;
+      }
+
+      &:active {
+        transform: scale(0.85);
+      }
+    }
+  }
+
+  .list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    overflow: auto;
+    flex: 1;
+  }
+}
+
 .button-login {
   border-radius: 20px;
   border: 1px solid #00c5bf;

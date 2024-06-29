@@ -1,24 +1,73 @@
-import { TaskModel } from "@/services/api/models/task.api-model";
 import { useGetTasks } from "@/services/api/requests/getTask.api";
-import React from "react";
+import React, { useState } from "react";
+import { List } from "./components/List";
+import { TaskModel } from "@/services/api/models/task.api-model";
+import { deleteCredentials } from "@/core/localstorage/localStorage.manager";
+import { useNavigate } from "react-router-dom";
+import { appRoutes } from "@/core/router";
 
 export const TaskListPage: React.FC = () => {
   const { data } = useGetTasks();
-  console.log(data);
+
+  const [filterStatus, setFilterStatus] = useState<number>(1);
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    deleteCredentials();
+    navigate(appRoutes.ParentComponent);
+  };
+
+  const handleEventButton = (statusId: number) => {
+    setFilterStatus(statusId);
+  };
+
+  if (!data) {
+    return <div>No tasks available</div>;
+  }
+
+  let filteredTasks: TaskModel[] = [];
+  let statusTitle: string = "";
+  console.log(filterStatus + "aaaaaaaaaaa");
+
+  switch (filterStatus) {
+    case 1:
+      filteredTasks = data.filter((task: TaskModel) => task.statusId === 1);
+      statusTitle = "Not Started";
+      break;
+    case 2:
+      filteredTasks = data.filter((task: TaskModel) => task.statusId === 2);
+      statusTitle = "In Progress";
+      break;
+    case 3:
+      filteredTasks = data.filter((task: TaskModel) => task.statusId === 3);
+      statusTitle = "Finished";
+      break;
+    default:
+      console.error("Assigment status not supported: " + filterStatus);
+      break;
+  }
+
   return (
     <>
-      <div>
-        <h1>TASK LIST</h1>
-        <div>
-          <ul>
-            {data?.map((task: TaskModel) => (
-              <li key={task.id}>{task.name}</li>
-            ))}
-          </ul>
+      <div className="header-container">
+        <button onClick={handleLogout}>Logout</button>
+        <p>{localStorage.getItem("Username")}</p>
+      </div>
+
+      <div className="tasklist-container">
+        <div className="tab-container">
+          <button onClick={() => handleEventButton(1)}>Not Started</button>
+          <button onClick={() => handleEventButton(2)}>In Progress</button>
+          <button onClick={() => handleEventButton(3)}>Finished</button>
+        </div>
+
+        <div className="list-container">
+          <div>
+            <List tasks={filteredTasks} status={statusTitle} />
+          </div>
         </div>
       </div>
     </>
   );
 };
-
-//TODO: añadir un header con el nombre del usuario y un boton de logout
