@@ -4,3 +4,9 @@ export interface TaskModel {
   description: string;
   statusId: number;
 }
+
+export interface NewTask {
+  name: string;
+  description: string;
+  statusId: number;
+}

@@ -3,4 +3,6 @@ export const appRoutes = {
   LoginPage: "/login",
   SignupPage: "/signup",
   TaskListPage: "/tasklist",
+  NewTask: "/newtask",
+  TaskDetails: "/:id/details",
 };

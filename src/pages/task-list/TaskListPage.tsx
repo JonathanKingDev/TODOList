@@ -5,6 +5,7 @@ import { TaskModel } from "@/services/api/models/task.api-model";
 import { deleteCredentials } from "@/core/localstorage/localStorage.manager";
 import { useNavigate } from "react-router-dom";
 import { appRoutes } from "@/core/router";
+import plus from "@/assets/img/plus.png";
 
 export const TaskListPage: React.FC = () => {
   const { data } = useGetTasks();
@@ -22,13 +23,16 @@ export const TaskListPage: React.FC = () => {
     setFilterStatus(statusId);
   };
 
+  const handleNewTask = () => {
+    navigate(appRoutes.NewTask);
+  };
+
   if (!data) {
     return <div>No tasks available</div>;
   }
 
   let filteredTasks: TaskModel[] = [];
   let statusTitle: string = "";
-  console.log(filterStatus + "aaaaaaaaaaa");
 
   switch (filterStatus) {
     case 1:
@@ -66,6 +70,11 @@ export const TaskListPage: React.FC = () => {
           <div>
             <List tasks={filteredTasks} status={statusTitle} />
           </div>
+        </div>
+        <div className="add-task">
+          <button onClick={handleNewTask}>
+            <img src={plus} alt="Add new task" className="icon" />
+          </button>
         </div>
       </div>
     </>

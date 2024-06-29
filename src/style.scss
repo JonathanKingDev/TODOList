@@ -17,7 +17,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: -20px 0 50px;
+  margin: 0;
 }
 
 h1 {
@@ -135,7 +135,6 @@ span {
 
       &:focus {
         background-color: #475b9f;
-
         box-shadow: 0px 1em 2em -1.5em rgba(0, 0, 0, 0.5) inset;
       }
 
@@ -153,6 +152,26 @@ span {
     margin-top: 20px;
     overflow: auto;
     flex: 1;
+  }
+}
+
+.add-task {
+  display: flex;
+  justify-content: right;
+  width: 100%;
+
+  button {
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
+    border: none;
+    &:active {
+      transform: scale(0.75);
+    }
+    .icon {
+      width: 50px;
+      height: 50px;
+    }
   }
 }
 
