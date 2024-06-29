@@ -3,6 +3,12 @@ export interface TaskModel {
   name: string;
   description: string;
   statusId: number;
+  user: User;
+}
+
+export interface User {
+  id: string;
+  username: string;
 }
 
 export interface NewTaskRequest {

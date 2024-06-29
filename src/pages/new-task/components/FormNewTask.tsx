@@ -60,6 +60,7 @@ export const FormNewTask: React.FC<Props> = (props) => {
           <button className="button-login" id="blue" type="submit">
             Create
           </button>
+          <button className="button-login">Scape</button>
         </form>
       </div>
     </>

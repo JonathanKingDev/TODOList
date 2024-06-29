@@ -8,9 +8,12 @@ import { appRoutes } from "@/core/router";
 import plus from "@/assets/img/plus.png";
 
 export const TaskListPage: React.FC = () => {
+  //Llamada a API => Obtiene todas las tareas
   const { data } = useGetTasks();
 
   const [filterStatus, setFilterStatus] = useState<number>(1);
+  const [tabName, setTabName] = useState<string>("Not Started");
+  const [checkMyTasks, setCheckMyTasks] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -19,37 +22,37 @@ export const TaskListPage: React.FC = () => {
     navigate(appRoutes.ParentComponent);
   };
 
-  const handleEventButton = (statusId: number) => {
+  const handleEventButton = (
+    statusId: number,
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
     setFilterStatus(statusId);
+    setTabName(e.currentTarget.innerText); //Coge el texto del boton clicado
   };
 
   const handleNewTask = () => {
     navigate(appRoutes.NewTask);
   };
 
+  const handleToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCheckMyTasks(e.target.checked);
+  };
+
   if (!data) {
     return <div>No tasks available</div>;
   }
 
-  let filteredTasks: TaskModel[] = [];
-  let statusTitle: string = "";
+  //Task filtradas por Status
+  let filteredTasks: TaskModel[] = data.filter(
+    (task: TaskModel) => task.statusId === filterStatus
+  );
 
-  switch (filterStatus) {
-    case 1:
-      filteredTasks = data.filter((task: TaskModel) => task.statusId === 1);
-      statusTitle = "Not Started";
-      break;
-    case 2:
-      filteredTasks = data.filter((task: TaskModel) => task.statusId === 2);
-      statusTitle = "In Progress";
-      break;
-    case 3:
-      filteredTasks = data.filter((task: TaskModel) => task.statusId === 3);
-      statusTitle = "Finished";
-      break;
-    default:
-      console.error("Assigment status not supported: " + filterStatus);
-      break;
+  //Si el toggle está marcado, filtra por usuario actual
+  if (checkMyTasks) {
+    filteredTasks = filteredTasks.filter(
+      (task: TaskModel) =>
+        task.user.username === localStorage.getItem("Username")
+    );
   }
 
   return (
@@ -61,20 +64,31 @@ export const TaskListPage: React.FC = () => {
 
       <div className="main-container">
         <div className="tab-container">
-          <button onClick={() => handleEventButton(1)}>Not Started</button>
-          <button onClick={() => handleEventButton(2)}>In Progress</button>
-          <button onClick={() => handleEventButton(3)}>Finished</button>
+          <button onClick={(e) => handleEventButton(1, e)}>Not Started</button>
+          <button onClick={(e) => handleEventButton(2, e)}>In Progress</button>
+          <button onClick={(e) => handleEventButton(3, e)}>Finished</button>
         </div>
 
         <div className="list-container">
           <div>
-            <List tasks={filteredTasks} status={statusTitle} />
+            <List tasks={filteredTasks} status={tabName} />
           </div>
         </div>
+
         <div className="add-task">
           <button onClick={handleNewTask}>
             <img src={plus} alt="Add new task" className="icon" />
           </button>
+
+          <div className="toggle-container">
+            <label>Show only my tasks</label>
+            <input
+              className="toggle"
+              type="checkbox"
+              id="my-toggle"
+              onChange={handleToggle}
+            />
+          </div>
         </div>
       </div>
     </>

@@ -20,7 +20,7 @@ export const Router: React.FC = () => {
 
         <Route path={appRoutes.TaskListPage} element={<TaskListPage />} />
         <Route path={appRoutes.NewTask} element={<NewTaskPage />} />
-        <Route path={appRoutes.TaskDetails} element={<TaskDetails />} />
+        <Route path={"/:id/details"} element={<TaskDetails />} />
       </Routes>
     </BrowserRouter>
   );
