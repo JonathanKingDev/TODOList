@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { LoginPage, TaskListPage } from "@/pages";
 import { appRoutes } from "./routes";
 import { SignupPage } from "@/pages/signup";
-import { ParentComponent } from "@/pages/ParentComponent";
+import { ParentLoginComponent } from "@/pages/ParentLoginComponent";
 
 export const Router: React.FC = () => {
   return (
@@ -11,7 +11,10 @@ export const Router: React.FC = () => {
         <Route path={appRoutes.LoginPage} element={<LoginPage />} />
         <Route path={appRoutes.SignupPage} element={<SignupPage />} />
         <Route path={appRoutes.TaskListPage} element={<TaskListPage />} />
-        <Route path={appRoutes.ParentComponent} element={<ParentComponent />} />
+        <Route
+          path={appRoutes.ParentComponent}
+          element={<ParentLoginComponent />}
+        />
       </Routes>
     </BrowserRouter>
   );

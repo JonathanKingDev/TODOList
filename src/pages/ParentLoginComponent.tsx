@@ -1,7 +1,7 @@
 import React from "react";
 import { LoginPage, SignupPage } from ".";
 
-export const ParentComponent: React.FC = () => {
+export const ParentLoginComponent: React.FC = () => {
   const [isSignUp, setIsSignUp] = React.useState(false);
 
   const handleSignUpClick = () => {
