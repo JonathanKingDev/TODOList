@@ -30,6 +30,10 @@ export const FormDetails: React.FC<Props> = (props) => {
         const Task = await getTaskDetails(taskId);
         if (Task) {
           setTask(Task);
+          userInput.id = Task.id;
+          userInput.name = Task.name;
+          userInput.description = Task.description;
+          userInput.statusId = Task.statusId;
         }
       } catch (error) {
         console.error("Error fetching task:", error);
@@ -46,7 +50,7 @@ export const FormDetails: React.FC<Props> = (props) => {
     return <div>Loading...</div>;
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput({
       ...userInput,
       [e.target.name]: e.target.value,
@@ -64,8 +68,9 @@ export const FormDetails: React.FC<Props> = (props) => {
     navigate(appRoutes.TaskListPage);
   };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSave = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
     onChangeDatails(userInput);
   };
 
@@ -82,15 +87,15 @@ export const FormDetails: React.FC<Props> = (props) => {
           <input
             type="text"
             name="name"
-            onChange={handleChange}
-            value={task.name}
+            onChange={handleChangeName}
+            value={userInput.name}
           />
           <textarea
             name="description"
             rows={10}
             cols={50}
             onChange={handleChangeArea}
-            value={task.description}
+            value={userInput.description}
           ></textarea>
           <div>
             <label>Created: {formattedDate}</label>
@@ -102,10 +107,11 @@ export const FormDetails: React.FC<Props> = (props) => {
               className="button-login"
               id="blue"
               type="button"
-              onClick={handleSubmit}
+              onClick={handleSave}
             >
               Save
             </button>
+
             <button className="button-login" onClick={handleCancel}>
               Cancel
             </button>

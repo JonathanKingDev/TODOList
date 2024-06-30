@@ -22,7 +22,7 @@ export const TaskDetails: React.FC = () => {
 
   const handleEditTaskSubmit = (input: EditTaskInput) => {
     const task = mapEditTaskToRequest(input);
-
+    console.log(task);
     editTask(task).then((Task) => {
       if (Task) {
         setShowAlert(true);
