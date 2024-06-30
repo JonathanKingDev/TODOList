@@ -1,5 +1,5 @@
-import { useGetTasks } from "@/services/api/requests/getTask.api";
-import React, { useState } from "react";
+import { getTasks } from "@/services/api/requests/getTasks.api";
+import React, { useEffect, useState } from "react";
 import { List } from "./components/List";
 import { TaskModel } from "@/services/api/models/task.api-model";
 import { deleteCredentials } from "@/core/localstorage/localStorage.manager";
@@ -8,14 +8,25 @@ import { appRoutes } from "@/core/router";
 import plus from "@/assets/img/plus.png";
 
 export const TaskListPage: React.FC = () => {
-  //Llamada a API => Obtiene todas las tareas
-  const { data } = useGetTasks();
-
   const [filterStatus, setFilterStatus] = useState<number>(1);
   const [tabName, setTabName] = useState<string>("Not Started");
   const [checkMyTasks, setCheckMyTasks] = useState<boolean>(false);
+  const [tasks, setTasks] = useState<TaskModel[]>([]);
 
   const navigate = useNavigate();
+
+  const fetchTasks = () => {
+    getTasks().then((Tasks) => {
+      if (Tasks) {
+        setTasks(Tasks);
+      }
+    });
+  };
+
+  useEffect(() => {
+    //Llamar API cuando se monta el componente
+    fetchTasks();
+  }, []);
 
   const handleLogout = () => {
     deleteCredentials();
@@ -38,10 +49,9 @@ export const TaskListPage: React.FC = () => {
     setCheckMyTasks(e.target.checked);
   };
 
-  //Task filtradas por Status
-  let filteredTasks: TaskModel[] = data
-    ? data.filter((task: TaskModel) => task.statusId === filterStatus)
-    : [];
+  let filteredTasks: TaskModel[] = tasks.filter(
+    (task: TaskModel) => task.statusId === filterStatus
+  );
 
   //Si el toggle está marcado, filtra por usuario actual
   if (checkMyTasks) {
@@ -50,6 +60,8 @@ export const TaskListPage: React.FC = () => {
         task.user.username === localStorage.getItem("Username")
     );
   }
+
+  console.log(tasks);
 
   return (
     <>

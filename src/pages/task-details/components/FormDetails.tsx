@@ -1,17 +1,17 @@
 import React from "react";
-import { NewTaskInput, createEmptyNewTaskInput } from "../newtask.vm";
+import { EditTaskInput, createEmptyEditTaskInput } from "../edittask.vm";
 import { useNavigate } from "react-router-dom";
 import { appRoutes } from "@/core/router";
 
 interface Props {
-  onCreate: (input: NewTaskInput) => void;
+  onChangeDatails: (input: EditTaskInput) => void;
 }
 
-export const FormNewTask: React.FC<Props> = (props) => {
-  const { onCreate } = props;
+export const FormDetails: React.FC<Props> = (props) => {
+  const { onChangeDatails } = props;
 
-  const [userInput, setUserInput] = React.useState<NewTaskInput>(
-    createEmptyNewTaskInput()
+  const [userInput, setUserInput] = React.useState<EditTaskInput>(
+    createEmptyEditTaskInput()
   );
 
   const navigate = useNavigate();
@@ -30,40 +30,44 @@ export const FormNewTask: React.FC<Props> = (props) => {
     });
   };
 
-  const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    onCreate(userInput);
-  };
-
   const handleCancel = () => {
     navigate(appRoutes.TaskListPage);
   };
 
+  const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onChangeDatails(userInput);
+  };
+
   return (
     <>
-      <div className="new-task-container">
+      <div className="datails-container">
         <form onSubmit={handleSubmit}>
-          <h1>Create New Task</h1>
+          <h1>Task Details</h1>
+          <label>OWNER</label>
           <input
             type="text"
-            placeholder="Enter task name..."
+            placeholder="Task name..."
             name="name"
             onChange={handleChange}
           />
           <textarea
-            placeholder="Enter task description..."
+            placeholder="Task description..."
             name="description"
             rows={10}
             cols={50}
             onChange={handleChangeArea}
           ></textarea>
 
-          <div className="buttons-new-taks-container">
+          <label>DATE</label>
+          <label>STATUS</label>
+
+          <div className="buttons-details-container">
             <button className="button-login" id="blue" type="submit">
-              Create
+              Edit
             </button>
             <button className="button-login" onClick={handleCancel}>
-              Cancel
+              Return
             </button>
           </div>
         </form>

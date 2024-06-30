@@ -3,6 +3,7 @@ export interface TaskModel {
   name: string;
   description: string;
   statusId: number;
+  createdAt: Date;
   user: User;
 }
 
@@ -12,6 +13,13 @@ export interface User {
 }
 
 export interface NewTaskRequest {
+  name: string;
+  description: string;
+  statusId: number;
+}
+
+export interface EditTaskRequest {
+  id: number;
   name: string;
   description: string;
   statusId: number;
