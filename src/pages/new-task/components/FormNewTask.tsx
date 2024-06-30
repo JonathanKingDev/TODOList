@@ -1,5 +1,7 @@
 import React from "react";
 import { NewTaskInput, createEmptyNewTaskInput } from "../newtask.vm";
+import { useNavigate } from "react-router-dom";
+import { appRoutes } from "@/core/router";
 
 interface Props {
   onCreate: (input: NewTaskInput) => void;
@@ -12,7 +14,16 @@ export const FormNewTask: React.FC<Props> = (props) => {
     createEmptyNewTaskInput()
   );
 
+  const navigate = useNavigate();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserInput({
+      ...userInput,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleChangeArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setUserInput({
       ...userInput,
       [e.target.name]: e.target.value,
@@ -24,9 +35,13 @@ export const FormNewTask: React.FC<Props> = (props) => {
     onCreate(userInput);
   };
 
+  const handleCancel = () => {
+    navigate(appRoutes.TaskListPage);
+  };
+
   return (
     <>
-      <div className="main-container">
+      <div className="new-task-container">
         <form onSubmit={handleSubmit}>
           <h1>Create New Task</h1>
           <input
@@ -35,32 +50,20 @@ export const FormNewTask: React.FC<Props> = (props) => {
             name="name"
             onChange={handleChange}
           />
-          <input
-            type="text"
+          <textarea
             placeholder="Enter task description..."
             name="description"
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            placeholder="Enter status id..."
-            name="statusId"
-            onChange={handleChange}
-          />
-          <div>
-            <h5>Possible Status Id:</h5>
-            <div>
-              <ol>
-                <li>Not Started</li>
-                <li>In Progress</li>
-                <li>Finished</li>
-              </ol>
-            </div>
-          </div>
+            rows={10}
+            cols={50}
+            onChange={handleChangeArea}
+          ></textarea>
+
           <button className="button-login" id="blue" type="submit">
             Create
           </button>
-          <button className="button-login">Scape</button>
+          <button className="button-login" onClick={handleCancel}>
+            Cancel
+          </button>
         </form>
       </div>
     </>

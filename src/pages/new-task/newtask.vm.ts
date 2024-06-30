@@ -7,5 +7,5 @@ export interface NewTaskInput {
 export const createEmptyNewTaskInput = (): NewTaskInput => ({
   name: "",
   description: "",
-  statusId: 0,
+  statusId: 1, //Todas las tareas se crean como Not Started
 });

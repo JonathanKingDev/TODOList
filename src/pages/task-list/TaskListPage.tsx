@@ -38,14 +38,10 @@ export const TaskListPage: React.FC = () => {
     setCheckMyTasks(e.target.checked);
   };
 
-  if (!data) {
-    return <div>No tasks available</div>;
-  }
-
   //Task filtradas por Status
-  let filteredTasks: TaskModel[] = data.filter(
-    (task: TaskModel) => task.statusId === filterStatus
-  );
+  let filteredTasks: TaskModel[] = data
+    ? data.filter((task: TaskModel) => task.statusId === filterStatus)
+    : [];
 
   //Si el toggle está marcado, filtra por usuario actual
   if (checkMyTasks) {
