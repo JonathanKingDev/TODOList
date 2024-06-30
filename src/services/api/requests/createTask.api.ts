@@ -1,5 +1,6 @@
 import api from "@/core/auth/api-base";
-import { NewTaskRequest, TaskModel } from "../models/task.api-model";
+import { NewTaskRequest } from "../models/task.api-model";
+import { TaskModel } from "@/core/models/task-model";
 
 const NEW_TASK_ENDPOINT = "/assignment";
 

@@ -1,5 +1,5 @@
 import { appRoutes } from "@/core/router";
-import { TaskModel } from "@/services/api/models/task.api-model";
+import { TaskModel } from "@/core/models/task-model";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 

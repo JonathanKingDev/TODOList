@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { List } from "./components/List";
-import { TaskModel } from "@/services/api/models/task.api-model";
+import { TaskModel } from "@/core/models/task-model";
 import { useNavigate } from "react-router-dom";
 import { appRoutes } from "@/core/router";
 import plus from "@/assets/img/plus.png";

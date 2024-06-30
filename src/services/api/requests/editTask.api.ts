@@ -1,4 +1,5 @@
-import { EditTaskRequest, TaskModel } from "../models/task.api-model";
+import { TaskModel } from "@/core/models/task-model";
+import { EditTaskRequest } from "../models/task.api-model";
 import api from "@/core/auth/api-base";
 
 const TASK_PUT_ENDPOINT = "/assignment/";

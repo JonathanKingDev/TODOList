@@ -1,4 +1,4 @@
-import { TaskModel } from "../models/task.api-model";
+import { TaskModel } from "@/core/models/task-model";
 import api from "@/core/auth/api-base";
 
 const TASKS_GET_ENDPOINT = "/assignment/";

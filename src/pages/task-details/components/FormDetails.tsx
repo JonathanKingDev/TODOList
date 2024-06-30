@@ -3,7 +3,7 @@ import { EditTaskInput, createEmptyEditTaskInput } from "../edittask.vm";
 import { useNavigate, useParams } from "react-router-dom";
 import { appRoutes } from "@/core/router";
 import { getTaskDetails } from "@/services/api/requests/getDetailsTask.api";
-import { TaskModel } from "@/services/api/models/task.api-model";
+import { TaskModel } from "@/core/models/task-model";
 import { format } from "date-fns";
 
 export const statusOptions = [

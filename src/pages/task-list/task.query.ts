@@ -1,11 +1,10 @@
-import { TaskModel } from "@/services/api/models/task.api-model";
+import { TaskModel } from "@/core/models/task-model";
 import { getTasks } from "@/services/api/requests/getTasks.api";
 import { useEffect, useState } from "react";
 
-
 export const useTaskList = () => {
   const [tasks, setTasks] = useState<TaskModel[]>([]);
-  
+
   const fetchTasks = () => {
     getTasks().then((Tasks) => {
       if (Tasks) {
@@ -19,5 +18,5 @@ export const useTaskList = () => {
     fetchTasks();
   }, []);
 
-  return {tasks}
-}
+  return { tasks };
+};
