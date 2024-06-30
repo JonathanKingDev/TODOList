@@ -253,7 +253,7 @@ span {
 
 .task-list {
   display: grid;
-  place-content: center;
+  justify-content: center;
   width: 650px;
   list-style-type: none;
   text-align: justify;
@@ -513,7 +513,6 @@ span {
       padding: 12px 15px;
       margin: 8px 0;
       width: 100%;
-      pointer-events: none;
     }
 
     textarea {
@@ -525,7 +524,6 @@ span {
       margin: 8px 0;
       width: 100%;
       resize: none;
-      pointer-events: none;
     }
   }
 

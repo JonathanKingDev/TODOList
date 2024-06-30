@@ -4,5 +4,5 @@ export const appRoutes = {
   SignupPage: "/signup",
   TaskListPage: "/tasklist",
   NewTask: "/newtask",
-  TaskDetails: (id: number) => `/:${id}/details`,
+  TaskDetails: (id: number) => `/${id}/details`,
 };

@@ -3,9 +3,7 @@ import axios from "axios";
 
 const TASKS_GET_ENDPOINT = "https://to-do-api.codelatte.es/assignment/";
 
-export const useGetTaskDetails = async (
-  id: number
-): Promise<TaskModel | null> => {
+export const getTaskDetails = async (id: number): Promise<TaskModel | null> => {
   try {
     const response = await axios.get<TaskModel>(TASKS_GET_ENDPOINT + id, {
       headers: {
