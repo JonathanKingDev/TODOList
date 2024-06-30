@@ -6,6 +6,12 @@ import { getTaskDetails } from "@/services/api/requests/getDetailsTask.api";
 import { TaskModel } from "@/services/api/models/task.api-model";
 import { format } from "date-fns";
 
+export const statusOptions = [
+  { value: 1, label: "Not Started" },
+  { value: 2, label: "In Progress" },
+  { value: 3, label: "Finished" },
+];
+
 interface Props {
   onChangeDatails: (input: EditTaskInput) => void;
 }
@@ -81,9 +87,15 @@ export const FormDetails: React.FC<Props> = (props) => {
       <div className="datails-container">
         <form onSubmit={(e) => e.preventDefault()}>
           <h1>Task Details</h1>
+
           <div>
             <label>Owner: {task.user.username}</label>
           </div>
+
+          <div>
+            <label>Created: {formattedDate}</label>
+          </div>
+
           <input
             type="text"
             name="name"
@@ -97,10 +109,27 @@ export const FormDetails: React.FC<Props> = (props) => {
             onChange={handleChangeArea}
             value={userInput.description}
           ></textarea>
-          <div>
-            <label>Created: {formattedDate}</label>
+
+          <div className="custom-dropdown">
+            <label>Status: </label>
+            <select
+              className="custom-select"
+              name="Status"
+              value={userInput.statusId}
+              onChange={(e) => {
+                setUserInput({
+                  ...userInput,
+                  statusId: Number(e.target.value),
+                });
+              }}
+            >
+              {statusOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
           </div>
-          <label>Status: {task.statusId}</label>
 
           <div className="buttons-details-container">
             <button

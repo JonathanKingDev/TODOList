@@ -1,16 +1,11 @@
 import { TaskModel } from "../models/task.api-model";
-import axios from "axios";
+import api from "@/core/auth/api-base";
 
-const TASKS_GET_ENDPOINT = "https://to-do-api.codelatte.es/assignment/";
+const TASKS_GET_ENDPOINT = "/assignment/";
 
 export const getTaskDetails = async (id: number): Promise<TaskModel | null> => {
   try {
-    const response = await axios.get<TaskModel>(TASKS_GET_ENDPOINT + id, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("Token")}`,
-      },
-    });
+    const response = await api.get<TaskModel>(`${TASKS_GET_ENDPOINT}${id}`);
     if (response.status === 200) {
       return response.data;
     } else {

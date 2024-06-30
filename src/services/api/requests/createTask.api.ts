@@ -1,18 +1,13 @@
-import Axios from "axios";
+import api from "@/core/auth/api-base";
 import { NewTaskRequest, TaskModel } from "../models/task.api-model";
 
-const NEW_TASK_ENDPOINT = "https://to-do-api.codelatte.es/assignment";
+const NEW_TASK_ENDPOINT = "/assignment";
 
 export const createTask = async (
   request: NewTaskRequest
 ): Promise<TaskModel | null> => {
   try {
-    const response = await Axios.post<TaskModel>(NEW_TASK_ENDPOINT, request, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("Token")}`,
-      },
-    });
+    const response = await api.post<TaskModel>(NEW_TASK_ENDPOINT, request);
     if (response.status === 200) {
       return response.data;
     } else {

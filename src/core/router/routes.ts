@@ -1,5 +1,5 @@
 export const appRoutes = {
-  ParentComponent: "/",
+  RootPage: "/",
   LoginPage: "/login",
   SignupPage: "/signup",
   TaskListPage: "/tasklist",

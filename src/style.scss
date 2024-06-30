@@ -536,3 +536,27 @@ span {
     }
   }
 }
+
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+
+  // Estilos para el select personalizado
+  .custom-select {
+    display: inline-block;
+    width: 200px;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    appearance: none; // Elimina el estilo por defecto del navegador
+
+    // Estilos adicionales para el select en estado de foco
+    &:focus {
+      border-color: #4caf50;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+    }
+  }
+}

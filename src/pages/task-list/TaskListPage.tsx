@@ -1,37 +1,31 @@
-import { getTasks } from "@/services/api/requests/getTasks.api";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { List } from "./components/List";
 import { TaskModel } from "@/services/api/models/task.api-model";
-import { deleteCredentials } from "@/core/localstorage/localStorage.manager";
 import { useNavigate } from "react-router-dom";
 import { appRoutes } from "@/core/router";
 import plus from "@/assets/img/plus.png";
+import { useTaskList } from "./task.query";
+import { useAuth } from "@/core/auth/auth.provider";
 
 export const TaskListPage: React.FC = () => {
   const [filterStatus, setFilterStatus] = useState<number>(1);
   const [tabName, setTabName] = useState<string>("Not Started");
   const [checkMyTasks, setCheckMyTasks] = useState<boolean>(false);
-  const [tasks, setTasks] = useState<TaskModel[]>([]);
+  const [filteredTasks, setFilteredTasks] = useState<TaskModel[]>([]);
 
+  const { username } = useAuth();
   const navigate = useNavigate();
+  const { tasks } = useTaskList();
 
-  const fetchTasks = () => {
-    getTasks().then((Tasks) => {
-      if (Tasks) {
-        setTasks(Tasks);
-      }
-    });
-  };
-
-  useEffect(() => {
-    //Llamar API cuando se monta el componente
-    fetchTasks();
-  }, []);
-
-  const handleLogout = () => {
-    deleteCredentials();
-    navigate(appRoutes.ParentComponent);
-  };
+  React.useEffect(() => {
+    setFilteredTasks(
+      tasks.filter(
+        (task: TaskModel) =>
+          task.statusId === filterStatus &&
+          (!checkMyTasks || task.user.username === username)
+      )
+    );
+  }, [filterStatus, checkMyTasks, tasks]);
 
   const handleEventButton = (
     statusId: number,
@@ -49,27 +43,8 @@ export const TaskListPage: React.FC = () => {
     setCheckMyTasks(e.target.checked);
   };
 
-  let filteredTasks: TaskModel[] = tasks.filter(
-    (task: TaskModel) => task.statusId === filterStatus
-  );
-
-  //Si el toggle está marcado, filtra por usuario actual
-  if (checkMyTasks) {
-    filteredTasks = filteredTasks.filter(
-      (task: TaskModel) =>
-        task.user.username === localStorage.getItem("Username")
-    );
-  }
-
-  console.log(tasks);
-
   return (
     <>
-      <div className="header-container">
-        <button onClick={handleLogout}>Logout</button>
-        <p>{localStorage.getItem("Username")}</p>
-      </div>
-
       <div className="main-container">
         <div className="tab-container">
           <button onClick={(e) => handleEventButton(1, e)}>Not Started</button>

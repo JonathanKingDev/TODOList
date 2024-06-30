@@ -4,10 +4,11 @@ import { authenticateUser, isEmptyRequest } from "../../services/api";
 import { appRoutes } from "@/core/router";
 import { LoginInput } from "./login.vm";
 import { mapCredentialsFormToRequest as mapLoginToRequest } from "./login.mapper";
-import { saveCredentials } from "@/core/localstorage/localStorage.manager";
+import { useAuth } from "@/core/auth/auth.provider";
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
+  const { setToken, setUsername } = useAuth();
 
   const handleLoginSubmit = (input: LoginInput) => {
     const credentials = mapLoginToRequest(input);
@@ -15,10 +16,11 @@ export const LoginPage: React.FC = () => {
     //Método para evitar llamar a la api si la request está vacía
     if (isEmptyRequest(credentials)) return;
 
-    authenticateUser(credentials).then((AppCredentials) => {
-      if (AppCredentials) {
+    authenticateUser(credentials).then((appCredentials) => {
+      if (appCredentials) {
         //guardar las credenciales en el localstorage
-        saveCredentials(AppCredentials);
+        setUsername(credentials.usernameOrEmail);
+        setToken(appCredentials.token);
 
         navigate(appRoutes.TaskListPage);
       } else {

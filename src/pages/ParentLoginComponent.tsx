@@ -12,7 +12,7 @@ export const ParentLoginComponent: React.FC = () => {
     setIsSignUp(false);
   };
 
-  const handleSignupSuccess = () => {
+  const handleOnSuccessFulSignup = () => {
     setIsSignUp(false);
   };
 
@@ -26,7 +26,7 @@ export const ParentLoginComponent: React.FC = () => {
       </div>
 
       <div className="form-container signup-container">
-        <SignupPage onSignupSuccess={handleSignupSuccess} />
+        <SignupPage onSucessfulSignup={handleOnSuccessFulSignup} />
       </div>
 
       <div className="overlay-container">
