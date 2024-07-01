@@ -1,7 +1,6 @@
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
-import { LoginPage, TaskListPage } from "@/pages";
+import { TaskListPage } from "@/pages";
 import { appRoutes } from "./routes";
-import { SignupPage } from "@/pages/signup";
 import { ParentLoginComponent } from "@/pages/ParentLoginComponent";
 import { NewTaskPage } from "@/pages/new-task/NewTaskPage";
 import { TaskDetails } from "@/pages/task-details/TaskDatails";
@@ -12,9 +11,6 @@ export const Router: React.FC = () => {
     <BrowserRouter>
       <Routes>
         <Route path={appRoutes.RootPage} element={<ParentLoginComponent />} />
-
-        <Route path={appRoutes.LoginPage} element={<LoginPage />} />
-        <Route path={appRoutes.SignupPage} element={<SignupPage />} />
 
         <Route
           element={
