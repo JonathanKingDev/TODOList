@@ -27,38 +27,39 @@ Este proyecto utiliza Vite como herramienta de construcción rápida para una ap
 
 > [!NOTE]
 > ## Funcionalidad implementada
-> El usuario puede hacer login si ya tiene una cuenta o hacer signup si no está registrado.
-> 
-> Si se hace signup, se redirige directamente al login.
-> 
-> Una vez logeado, el usuario puede ver el username con el que está logeado y hacer logout.
-> 
-> Estas opciones se encuentran en el header.
-> 
-> También se presenta la lista de tareas agrupadas por estatus. Hay tres pestañas que separan las tareas.
-> 
-> Se ha incluido una opción para filtrar solo las tareas creadas por el usuario logueado.
-> 
-> Si se clicka en una tarea, se pueden ver sus detalles y modificar el nombre, la descripción y el estado.
-> 
-> También es posible añadir una tarea nueva rellenando el nombre y la descripción.
-> 
-> Se ha optado por crear todas las tareas nuevas en el estado "Not Started".
+> El usuario tiene la opción de iniciar sesión si ya posee una cuenta o de registrarse mediante la opción de signup si aún no está registrado. Tras completar el registro, el usuario es redirigido automáticamente  a la página de inicio de sesión.
+>
+> Una vez que el usuario ha iniciado sesión, puede visualizar el nombre de usuario con el que está conectado y tiene la opción de cerrar sesión. Estas funcionalidades se encuentran disponibles en el encabezado (header) de la aplicación.
+>
+> La aplicación presenta una lista de tareas agrupadas por estatus, organizada en tres pestañas distintas que separan las tareas en función de su estado. Se ha incluido una opción que permite filtrar las tareas  para mostrar únicamente aquellas que han sido creadas por el usuario actualmente conectado.
+>
+> Al seleccionar una tarea, el usuario puede acceder a sus detalles y realizar modificaciones en el nombre, la descripción y el estado de la tarea. También es posible añadir nuevas tareas proporcionando un nombre  y una descripción. Por defecto, todas las nuevas tareas se crean en el estado "Not Started".
 
 </br>
 
 
 > [!NOTE]
 > ## Posibles mejoras de la aplicación
-> Se ha optado por definir los estados de las tareas de forma estática.
-> 
-> - La primera mejora sería obtener los estados de la api y que así fueran dinámicos, ya que ahora mismo si se añade uno nuevo, este no estaría reflejado y las tareas en ese estado no se mostrarían.
-> 
-> - Una mejora de usabilidad sería quitar las alertas informativas y añadir los mensajes en popups que desaparecieran después de unos pocos segundos.
-> 
-> - Otra mejora sería dar la opción de crear nuevas tareas en cualquier estado. Esto daría una mayor flexibilidad al usuario.
-> 
-> - La última mejora sería añadir más control de errores. Comprobando todas las posibles respuestas de la api y logando o mostrando los errores para dar mas información al usuario.
-> 
-> - Para que el código sea más legible, se podrían componetizar más algunos ficheros.
+>
+> - Estados de Tareas Dinámicos: Ahora mismo, los estados de las tareas están fijos en el código. Sería útil hacer que se obtengan desde la API para que los cambios, como la adición de nuevos estados, se reflejen  automáticamente y todas las tareas se muestren correctamente según su estado.
+>
+> - Mejora en la Usabilidad: En lugar de usar alertas informativas, podríamos optar por mensajes emergentes (popups) que se cierren automáticamente después de unos segundos. Esto haría la interfaz más amigable y  menos intrusiva.
+>
+> - Flexibilidad en la Creación de Tareas: Dejar que los usuarios creen nuevas tareas en cualquier estado ofrecería más flexibilidad. Así, podrían gestionar sus tareas de manera más libre y eficiente.
+>
+> - Mejor Manejo de Errores: Implementar un control más detallado de los errores al interactuar con la API sería muy útil. Esto incluiría validar todas las posibles respuestas de la API y mostrar o registrar los  errores de forma que los usuarios tengan información clara sobre lo que ha fallado.
+>
+> - Código Más Legible: Para hacer el código más fácil de entender y mantener, se podrían dividir más los archivos en componentes más pequeños. También sería bueno usar @mixin para los estilos, de manera que se   puedan reutilizar más fácilmente.
+>
+> Optimización de Estilos: Debido a la falta de tiempo, la optimización de los estilos no está completa. Sería ideal dividir los estilos en partes más específicas y usar @mixin para facilitar su reutilización y   mantener el código de estilos organizado.
+>
+> Estas mejoras están pensadas para hacer que la aplicación sea más eficiente, fácil de usar y más fácil de mantener.
 
+> [!TIP]
+> No se ha podido implementar pruebas unitarias por falta de tiempo. Se deberían incluir para asegurar el correcto funcionamiento de funcionalidades.
+> Algunos test podrían ser:
+> - Filtrar lista de tareas por usuario.
+> - Mostrar detalles de una tarea.
+> - Crear una nueva tarea.
+> - Editar una tarea.
+ 
