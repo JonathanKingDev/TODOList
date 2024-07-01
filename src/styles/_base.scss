@@ -1,0 +1,72 @@
+//VARIABLES
+$translateX100: 100%;
+$translateX50: 50%;
+$translateX20: 20%;
+$translateXMinus100: -100%;
+
+$--background: #fff;
+$--color-green: #00c5bf;
+$--color-blue: #0077bc;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui;
+  margin: 0;
+  padding: 0;
+  background: #f6f5f7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+h1 {
+  font-weight: bold;
+  margin: 0;
+}
+
+p {
+  font-size: 16px;
+  font-weight: 100;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 20px 0 30px;
+}
+
+span {
+  font-size: 12px;
+}
+
+@mixin tab-blue {
+  background: $--color-blue;
+  border: 1px solid $--background;
+  border-bottom: none;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  width: 190px;
+
+  &:focus {
+    background-color: #475b9f;
+    box-shadow: 0px 1em 2em -1.5em rgba(0, 0, 0, 0.9) inset;
+    transform: scale(0.9);
+  }
+
+  &:active {
+    transform: scale(0.85);
+  }
+
+  &:hover {
+    filter: brightness(120%);
+  }
+}

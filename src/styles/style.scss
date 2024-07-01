@@ -1,47 +1,48 @@
-$translateX100: 100%;
-$translateX50: 50%;
-$translateX20: 20%;
-$translateXMinus100: -100%;
+@import "base";
+@import "toggle";
 
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: system-ui;
-  margin: 0;
-  padding: 0;
-  background: #f6f5f7;
+.header-container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: right;
   align-items: center;
-  height: 100vh;
-  margin: 0;
-}
+  padding: 10px;
+  gap: 10px;
 
-h1 {
-  font-weight: bold;
-  margin: 0;
-}
+  button {
+    border-radius: 20px;
+    border: 1px solid $--color-green;
+    background: $--color-green;
+    color: $--background;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2) inset;
 
-p {
-  font-size: 16px;
-  font-weight: 100;
-  line-height: 20px;
-  letter-spacing: 0.5px;
-  margin: 20px 0 30px;
-}
+    &:focus {
+      transform: scale(0.9);
+    }
 
-span {
-  font-size: 12px;
+    &:hover {
+      filter: brightness(120%);
+    }
+  }
+
+  p {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 10px 20px;
+  }
 }
 
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #fff;
+  background: $--background;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0, 10px 10px rgba(0, 0, 0, 0.22);
   position: relative;
@@ -73,45 +74,12 @@ span {
   }
 }
 
-.header-container {
-  display: flex;
-  justify-content: right;
-  align-items: center;
-  padding: 10px;
-  gap: 10px;
-
-  button {
-    border-radius: 20px;
-    border: 1px solid #00c5bf;
-    background: #00c5bf;
-    color: #fff;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 12px 45px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2) inset;
-
-    &:focus {
-      transform: scale(0.9);
-    }
-  }
-
-  p {
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin: 10px 20px;
-  }
-}
-
 .main-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #fff;
+  background: $--background;
   border-radius: 10px;
   height: 50vh;
   max-width: 700px;
@@ -127,31 +95,10 @@ span {
     width: 100%;
     margin-top: 30px;
     margin-bottom: -20px;
-    border-bottom: 2px solid #0077bc;
+    border-bottom: 2px solid $--color-blue;
 
     button {
-      background: #0077bc;
-      border: 1px solid #fff;
-      border-bottom: none;
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
-      color: #fff;
-      font-size: 12px;
-      font-weight: bold;
-      padding: 12px 45px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      width: 190px;
-
-      &:focus {
-        background-color: #475b9f;
-        box-shadow: 0px 1em 2em -1.5em rgba(0, 0, 0, 0.9) inset;
-        transform: scale(0.9);
-      }
-
-      &:active {
-        transform: scale(0.85);
-      }
+      @include tab-blue;
     }
   }
 
@@ -179,48 +126,6 @@ span {
     margin-left: 30px;
   }
 
-  .toggle {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    position: relative;
-    font-size: inherit;
-    width: 2em;
-    height: 1em;
-    box-sizing: content-box;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2) inset;
-    border-radius: 1em;
-    vertical-align: text-bottom;
-    margin: auto;
-    color: inherit;
-    background-color: lightgray;
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 0;
-      transform: translate(0, -50%);
-      box-sizing: border-box;
-      width: 0.7em;
-      height: 0.7em;
-      margin: 0 0.15em;
-      border: 1px solid #fff;
-      border-radius: 50%;
-      background: #fff;
-    }
-
-    &:checked::before {
-      left: 1em;
-      background-color: #fff;
-      border: 1px solid #fff;
-    }
-
-    &:checked {
-      background: #00c5bf;
-    }
-  }
-
   .add-task {
     display: flex;
     justify-content: right;
@@ -234,6 +139,11 @@ span {
       &:active {
         transform: scale(0.75);
       }
+
+      &:hover {
+        filter: brightness(120%);
+      }
+
       .icon {
         width: 50px;
         height: 50px;
@@ -247,7 +157,7 @@ span {
   justify-content: center;
   position: sticky;
   top: 0;
-  background-color: #fff;
+  background-color: $--background;
   padding: 20px;
 }
 
@@ -280,7 +190,7 @@ span {
     }
 
     &:hover {
-      background-color: #00c5bf;
+      background-color: $--color-green;
       color: #fff;
     }
   }
@@ -288,8 +198,8 @@ span {
 
 .button-login {
   border-radius: 20px;
-  border: 1px solid #00c5bf;
-  background: #00c5bf;
+  border: 1px solid $--color-green;
+  background: $--color-green;
   color: #fff;
   font-size: 12px;
   font-weight: bold;
@@ -301,8 +211,8 @@ span {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2) inset;
 
   &#blue {
-    background: #0077bc;
-    border: 1px solid #0077bc;
+    background: $--color-blue;
+    border: 1px solid $--color-blue;
   }
 
   &:active {
@@ -315,9 +225,13 @@ span {
     transform: scale(0.9);
   }
 
+  &:hover {
+    filter: brightness(120%);
+  }
+
   &.ghost {
     background: transparent;
-    border-color: #fff;
+    border-color: $--background;
   }
 }
 
@@ -327,7 +241,7 @@ span {
   transition: all 0.6s ease-in-out;
 
   & form {
-    background: #fff;
+    background: $--background;
     display: flex;
     flex-direction: column;
     padding: 0 50px;
@@ -422,7 +336,7 @@ span {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #fff;
+  background: $--background;
   border-radius: 10px;
   height: 50vh;
   max-width: 650px;
@@ -431,7 +345,7 @@ span {
   min-width: 480px;
 
   form {
-    background: #fff;
+    background: $--background;
     display: flex;
     flex-direction: column;
     padding: 0 50px;
@@ -482,7 +396,7 @@ span {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #fff;
+  background: $--background;
   border-radius: 10px;
   height: 50vh;
   max-width: 650px;
@@ -491,7 +405,7 @@ span {
   min-width: 480px;
 
   form {
-    background: #fff;
+    background: $--background;
     display: flex;
     flex-direction: column;
     padding: 0 50px;
@@ -541,7 +455,6 @@ span {
   position: relative;
   display: inline-block;
 
-  // Estilos para el select personalizado
   .custom-select {
     display: inline-block;
     width: 200px;
@@ -549,10 +462,9 @@ span {
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    background-color: #fff;
-    appearance: none; // Elimina el estilo por defecto del navegador
+    background-color: $--background;
+    appearance: none;
 
-    // Estilos adicionales para el select en estado de foco
     &:focus {
       border-color: #4caf50;
       outline: none;

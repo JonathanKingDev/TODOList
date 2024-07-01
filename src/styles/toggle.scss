@@ -1,0 +1,41 @@
+.toggle {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+    font-size: inherit;
+    width: 2em;
+    height: 1em;
+    box-sizing: content-box;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2) inset;
+    border-radius: 1em;
+    vertical-align: text-bottom;
+    margin: auto;
+    color: inherit;
+    background-color: lightgray;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate(0, -50%);
+      box-sizing: border-box;
+      width: 0.7em;
+      height: 0.7em;
+      margin: 0 0.15em;
+      border: 1px solid #fff;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    &:checked::before {
+      left: 1em;
+      background-color: #fff;
+      border: 1px solid #fff;
+    }
+
+    &:checked {
+      background: #00c5bf;
+    }
+  }
