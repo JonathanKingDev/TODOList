@@ -5,6 +5,7 @@ Este proyecto utiliza Vite como herramienta de construcción rápida para una ap
 
 
 > [!IMPORTANT]
+> 
 > ## Requisitos previos
 > Asegúrate de tener instalado Node.js en tu sistema. Puedes descargarlo e instalarlo desde [nodejs.org](nodejs.org).
 > ## Instalación
