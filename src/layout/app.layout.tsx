@@ -3,10 +3,7 @@ import { appRoutes } from "@/core/router";
 import { useNavigate } from "react-router-dom";
 
 interface Props {
-<<<<<<< HEAD
   children: React.ReactNode;
-=======
->>>>>>> 11c50ab23e33a58c23094a569832144e33750e8f
 }
 
 export const AppLayout: React.FC<Props> = (props) => {
